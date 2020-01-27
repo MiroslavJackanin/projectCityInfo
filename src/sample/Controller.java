@@ -26,7 +26,7 @@ public class Controller {
 
     public void populateCB2(){
         Database db = new Database();
-        cities = db.getCities();
+        cities = db.getCities(getCB1Value());
         combo2.getItems().setAll(cities);
     }
 }

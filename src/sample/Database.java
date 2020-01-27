@@ -22,14 +22,13 @@ public class Database {
         return list;
     }
 
-    public List getCities(){
+    public List getCities(String country){
         List<String> list = new ArrayList<>();
-        Controller ctr = new Controller();
         try{
             Connection con = getConnection();
 
-            PreparedStatement ps = con.prepareStatement("SELECT Name FROM city WHERE countryCode LIKE ?");
-            ps.setString(1, ctr.getCB1Value());
+            PreparedStatement ps = con.prepareStatement("SELECT city.name FROM country JOIN city ON country.code = city.countrycode WHERE country.name LIKE ? ");
+            ps.setString(1, country);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 list.add(rs.getString("Name"));
