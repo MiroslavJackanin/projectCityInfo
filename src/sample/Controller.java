@@ -3,9 +3,6 @@ package sample;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-
-import javax.xml.crypto.Data;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
@@ -13,8 +10,13 @@ public class Controller {
     public ComboBox<String> combo2;
     public Button okButton;
     public Label population;
+    public Label temperature;
+    public Label humidity;
+    public Label distance;
+    public Label sCity;
+    public Label sCountry;
     List countries;
-    List cities;
+    List<City> city;
 
     public Controller() {
         Database db = new Database();
@@ -51,7 +53,6 @@ public class Controller {
 
     public void populateCB2(){
         Database db = new Database();
-        List<City> city;
         city = db.getCities(getCB1Value());
         combo2.getItems().clear();
         for(City s: city){
@@ -62,6 +63,24 @@ public class Controller {
     public void getInfo(){
         Database db = new Database();
         String pop = db.getPopulation(getCB1Value(), getCB2Value());
-        population.setText(pop);
+        population.setText(populationDecimalFormat(pop));
+        sCity.setText(getCB2Value());
+        sCountry.setText(getCB1Value());
+
+        String cityName = combo2.getValue();
+        City city = null;
+        for (City c: this.city) {
+            if (c.getName().equalsIgnoreCase(cityName)){
+                city = c;
+                break;
+            }
+        }
+        if (city==null){
+            return;
+        }
+    }
+
+    public String populationDecimalFormat(String population){
+        return String.format("%,d", Integer.parseInt(population));
     }
 }
