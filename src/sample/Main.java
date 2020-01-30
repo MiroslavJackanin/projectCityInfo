@@ -12,12 +12,13 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 500, 460));
+        primaryStage.setScene(new Scene(root, 500, 510));
         primaryStage.show();
     }
 
 
     public static void main(String[] args) {
+        new WebWeather().getData("Kosice", "SK");
         launch(args);
     }
 }

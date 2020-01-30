@@ -1,9 +1,14 @@
 package sample;
 
+import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
+
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class Controller {
     public ComboBox<String> combo1;
@@ -12,9 +17,15 @@ public class Controller {
     public Label population;
     public Label temperature;
     public Label humidity;
-    public Label distance;
     public Label sCity;
     public Label sCountry;
+    public Label longitude;
+    public Label latitude;
+    public Label visibility;
+    public CheckBox checkDetail;
+    public Label sunrise;
+    public Label sunset;
+    public Pane detailPane;
     List countries;
     List<City> city;
 
@@ -25,6 +36,7 @@ public class Controller {
     public void initialize(){
         combo2.setDisable(true);
         okButton.setDisable(true);
+        detailPane.setVisible(false);
     }
 
     public void populateCB1(){
@@ -69,7 +81,7 @@ public class Controller {
 
         String cityName = combo2.getValue();
         City city = null;
-        for (City c: this.city) {
+        for (City c: this.city){
             if (c.getName().equalsIgnoreCase(cityName)){
                 city = c;
                 break;
@@ -78,9 +90,32 @@ public class Controller {
         if (city==null){
             return;
         }
+
+        WebWeather webWeather = new WebWeather();
+        temperature.setText(webWeather.getData(city.getName(), city.getCode2()).getTemp()+"");
+        humidity.setText(webWeather.getData(city.getName(), city.getCode2()).getHumidity()+"");
+        longitude.setText(webWeather.getData(city.getName(), city.getCode2()).getLon()+"");
+        latitude.setText(webWeather.getData(city.getName(), city.getCode2()).getLat()+"");
+        visibility.setText(webWeather.getData(city.getName(), city.getCode2()).getVisibility()+"");
+        sunrise.setText(webWeather.getData(city.getName(), city.getCode2()).getSunrise()+"");
+        sunset.setText(webWeather.getData(city.getName(), city.getCode2()).getSunset()+"");
+
+        System.out.println(String.format("%d hour, %d min",
+                TimeUnit.MICROSECONDS.toHours(webWeather.getData(city.getName(), city.getCode2()).getSunset()),
+                TimeUnit.MICROSECONDS.toMinutes(webWeather.getData(city.getName(), city.getCode2()).getSunset()) - TimeUnit.MINUTES.toMinutes(TimeUnit.MICROSECONDS.toHours(webWeather.getData(city.getName(), city.getCode2()).getSunset()))
+        ));
     }
+
 
     public String populationDecimalFormat(String population){
         return String.format("%,d", Integer.parseInt(population));
+    }
+
+    public void showDetail(ActionEvent actionEvent) {
+        if (checkDetail.isSelected()){
+            detailPane.setVisible(true);
+        }else{
+            detailPane.setVisible(false);
+        }
     }
 }

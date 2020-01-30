@@ -10,7 +10,7 @@ public class Database {
         try {
             Connection con = getConnection();
 
-            PreparedStatement ps = con.prepareStatement("SELECT Code, Name FROM country");
+            PreparedStatement ps = con.prepareStatement("SELECT Code, Name FROM country ORDER BY name ASC");
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 //System.out.println(rs.getString("Code")+"  "+rs.getString("Name"));

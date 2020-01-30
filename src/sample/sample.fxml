@@ -12,7 +12,7 @@
         <RowConstraints />
     </rowConstraints>
     <children>
-        <Pane prefHeight="458.0" prefWidth="495.0">
+        <Pane prefHeight="483.0" prefWidth="495.0">
             <children>
                 <ComboBox fx:id="combo1" layoutX="37.0" layoutY="136.0" onAction="#getCB1Value" onShowing="#populateCB1" prefWidth="150.0" />
                 <Label layoutX="49.0" layoutY="108.0" prefHeight="17.0" prefWidth="109.0" text="Choose a country:" />
@@ -22,7 +22,7 @@
                 <Label layoutX="50.0" layoutY="284.0" text="Pop: " />
                 <Label layoutX="49.0" layoutY="324.0" text="Temp: " />
                 <Label layoutX="49.0" layoutY="362.0" text="Hum: " />
-                <Label layoutX="49.0" layoutY="400.0" text="Dist: " />
+                <Label layoutX="49.0" layoutY="400.0" text="Lon: " />
             <Label layoutX="201.0" layoutY="31.0" prefHeight="43.0" prefWidth="94.0" text="CITY INFO">
                <font>
                   <Font name="System Bold" size="18.0" />
@@ -34,7 +34,7 @@
                </font></Label>
             <Label fx:id="temperature" layoutX="100.0" layoutY="324.0" prefHeight="17.0" prefWidth="59.0" text="Label" />
             <Label fx:id="humidity" layoutX="100.0" layoutY="362.0" prefHeight="17.0" prefWidth="59.0" text="Label" />
-            <Label fx:id="distance" layoutX="100.0" layoutY="400.0" prefHeight="17.0" prefWidth="59.0" text="Label" />
+            <Label fx:id="longitude" layoutX="100.0" layoutY="400.0" prefHeight="17.0" prefWidth="59.0" text="Label" />
             <Label layoutX="51.0" layoutY="238.0" text="City: " />
             <Label layoutX="51.0" layoutY="200.0" text="Country: " />
             <Label fx:id="sCountry" layoutX="130.0" layoutY="191.0" text="Label">
@@ -42,6 +42,19 @@
                   <Font size="24.0" />
                </font>
             </Label>
+            <Label layoutX="51.0" layoutY="432.0" text="Lat: " />
+            <Label fx:id="latitude" layoutX="98.0" layoutY="432.0" text="Label" />
+            <CheckBox fx:id="checkDetail" layoutX="277.0" layoutY="284.0" mnemonicParsing="false" onAction="#showDetail" text="More detail" />
+            <Pane fx:id="detailPane" layoutX="262.0" layoutY="311.0" prefHeight="120.0" prefWidth="180.0">
+               <children>
+                  <Label layoutX="17.0" layoutY="14.0" text="Vis: " />
+                  <Label fx:id="visibility" layoutX="64.0" layoutY="14.0" text="Label" />
+                  <Label layoutX="14.0" layoutY="52.0" text="Rise: " />
+                  <Label fx:id="sunrise" layoutX="64.0" layoutY="52.0" text="Label" />
+                  <Label layoutX="14.0" layoutY="90.0" text="Set: " />
+                  <Label fx:id="sunset" layoutX="64.0" layoutY="90.0" text="Label" />
+               </children>
+            </Pane>
             </children>
         </Pane>
     </children>
