@@ -97,13 +97,8 @@ public class Controller {
         longitude.setText(webWeather.getData(city.getName(), city.getCode2()).getLon()+"");
         latitude.setText(webWeather.getData(city.getName(), city.getCode2()).getLat()+"");
         visibility.setText(webWeather.getData(city.getName(), city.getCode2()).getVisibility()+"");
-        sunrise.setText(webWeather.getData(city.getName(), city.getCode2()).getSunrise()+"");
-        sunset.setText(webWeather.getData(city.getName(), city.getCode2()).getSunset()+"");
-
-        System.out.println(String.format("%d hour, %d min",
-                TimeUnit.MICROSECONDS.toHours(webWeather.getData(city.getName(), city.getCode2()).getSunset()),
-                TimeUnit.MICROSECONDS.toMinutes(webWeather.getData(city.getName(), city.getCode2()).getSunset()) - TimeUnit.MINUTES.toMinutes(TimeUnit.MICROSECONDS.toHours(webWeather.getData(city.getName(), city.getCode2()).getSunset()))
-        ));
+        sunrise.setText(new java.text.SimpleDateFormat("HH:mm:ss").format(new java.util.Date (webWeather.getData(city.getName(), city.getCode2()).getSunrise()*1000)));
+        sunset.setText(new java.text.SimpleDateFormat("HH:mm:ss").format(new java.util.Date (webWeather.getData(city.getName(), city.getCode2()).getSunset()*1000)));
     }
 
 
