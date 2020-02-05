@@ -101,7 +101,7 @@ public class Controller {
         sunset.setText(new java.text.SimpleDateFormat("HH:mm:ss").format(new java.util.Date (webWeather.getData(city.getName(), city.getCode2()).getSunset()*1000)));
     }
 
-
+    
     public String populationDecimalFormat(String population){
         return String.format("%,d", Integer.parseInt(population));
     }

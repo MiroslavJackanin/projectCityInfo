@@ -38,7 +38,10 @@ public class WebWeather {
                 lat = jsonObject.getJSONObject("coord").getDouble("lat");
                 sunrise = jsonObject.getJSONObject("sys").getLong("sunrise");
                 sunset = jsonObject.getJSONObject("sys").getLong("sunset");
+            }else{
+                throw new NoSuchCityException("City not found.");
             }
+            connection.disconnect();
         } catch (Exception e){
             e.printStackTrace();
         }
